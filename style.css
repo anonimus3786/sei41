@@ -324,7 +324,6 @@ body {
     box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
 }
 
-/* ===== СТРЕЛКИ ===== */
 .arrow {
     position: fixed;
     bottom: 30px;
@@ -335,28 +334,26 @@ body {
     height: 60px;
     border-radius: 50%;
     
-    /* Делаем кнопку полупрозрачной */
-    background: rgba(255, 255, 255, 0.6); /* 0.6 — это 60% непрозрачности */
-    backdrop-filter: blur(5px);          /* Размытие фона за кнопкой (эффект стекла) */
-    -webkit-backdrop-filter: blur(5px);  /* Для Safari */
+    /* 90% ПРОЗРАЧНОСТИ (оставляем всего 10% от белого цвета) */
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(8px);          /* Чуть усилили размытие для читаемости */
+    -webkit-backdrop-filter: blur(8px);  
     
     color: #1e3c72;
     font-size: 20px;
     text-decoration: none;
-    box-shadow: 0 10px 30px rgba(30, 60, 114, 0.15); /* Тень сделали чуть мягче */
+    box-shadow: 0 4px 15px rgba(30, 60, 114, 0.1); 
     transition: transform .2s, background .2s, color .2s;
     z-index: 100;
     left: auto;
     right: auto;
 }
 
-/* При наведении мышкой кнопка становится плотной и закрашивается */
+/* При наведении кнопка становится видимой (чтобы было понятно, что нажали) */
 .arrow:hover {
     transform: scale(1.1);
-    background: #1e3c72; /* Сплошной синий */
-    color: #fff;
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
+    background: rgba(255, 255, 255, 0.9);
+    color: #1e3c72;
 }
 
 .arrow--next {
@@ -626,4 +623,22 @@ body {
     .arrow--next:hover {
         transform: translateX(10px) scale(1.1);
     }
+}
+
+/* ТЕНИ ДЛЯ ТЕКСТА, ЧТОБЫ ОН НЕ СЛИВАЛСЯ С ФОНОМ */
+.slide__text h2,
+.slide__text p,
+.slide__text strong,
+.slide__num {
+    /* Добавляем легкую белую тень вокруг каждой буквы */
+    text-shadow: 
+        0px 0px 4px rgba(255, 255, 255, 0.9), 
+        0px 0px 8px rgba(255, 255, 255, 0.6);
+}
+
+/* Для текста на темном фоне (например, на 3-м слайде с Кузнецовым) */
+.slide--title h1,
+.slide--title span,
+.slide__sub {
+    text-shadow: 0px 2px 10px rgba(0, 0, 0, 0.5);
 }
