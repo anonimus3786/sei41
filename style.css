@@ -550,3 +550,68 @@ body {
         font-size: 26px;
     }
 }
+/* ===== КНОПКИ ПО ЦЕНТРУ ЭКРАНА ===== */
+.arrow {
+    position: fixed; /* Фиксируем относительно экрана */
+    bottom: 30px;
+    top: auto;
+    width: 60px;
+    height: 60px;
+    z-index: 100;
+    /* Убираем старые left/right */
+    left: auto;
+    right: auto;
+}
+
+/* Левая кнопка (Назад) */
+.arrow--prev {
+    left: 50%;
+    transform: translateX(-70px); /* Сдвигаем влево от центра */
+}
+
+.arrow--prev:hover {
+    transform: translateX(-70px) scale(1.1);
+}
+
+/* Правая кнопка (Вперед) */
+.arrow--next {
+    left: 50%;
+    transform: translateX(10px); /* Сдвигаем вправо от центра */
+}
+
+.arrow--next:hover {
+    transform: translateX(10px) scale(1.1);
+}
+
+/* Для титульной страницы (там одна стрелка) */
+.arrow--title {
+    position: static; /* Возвращаем в поток */
+    margin: 40px auto 0;
+    display: grid;
+    transform: none;
+}
+
+.arrow--title:hover {
+    transform: scale(1.1);
+}
+
+/* На мобилках кнопки чуть меньше */
+@media (max-width: 900px) {
+    .arrow {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+    }
+    .arrow--prev {
+        transform: translateX(-60px);
+    }
+    .arrow--prev:hover {
+        transform: translateX(-60px) scale(1.1);
+    }
+    .arrow--next {
+        transform: translateX(10px);
+    }
+    .arrow--next:hover {
+        transform: translateX(10px) scale(1.1);
+    }
+}
