@@ -358,17 +358,58 @@
         <a href="#slide1" class="arrow arrow--next">▸</a>
     </section>
 
-    <script>
+        <script>
         document.addEventListener('DOMContentLoaded', () => {
             const slides = document.querySelectorAll('.slide');
+            let touchStartX = 0;
+            let touchEndX = 0;
+
             function showSlide() {
                 slides.forEach(s => s.classList.remove('active'));
                 const hash = window.location.hash || '#slide1';
                 const target = document.querySelector(hash) || slides[0];
                 target.classList.add('active');
             }
+
             window.addEventListener('hashchange', showSlide);
             showSlide();
+
+            // --- Обработка свайпов ---
+            document.addEventListener('touchstart', e => {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+
+            document.addEventListener('touchend', e => {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+
+            function handleSwipe() {
+                const swipeThreshold = 50; // Минимальная длина свайпа в пикселях
+                const diff = touchStartX - touchEndX;
+                
+                if (Math.abs(diff) > swipeThreshold) {
+                    // Получаем ID текущего активного слайда
+                    const currentActive = document.querySelector('.slide.active');
+                    if (!currentActive) return;
+                    
+                    const currentId = parseInt(currentActive.id.replace('slide', ''));
+                    
+                    if (diff > 0) {
+                        // Свайп влево -> следующий слайд
+                        const nextId = currentId + 1;
+                        if (document.getElementById('slide' + nextId)) {
+                            window.location.hash = '#slide' + nextId;
+                        }
+                    } else {
+                        // Свайп вправо -> предыдущий слайд
+                        const prevId = currentId - 1;
+                        if (document.getElementById('slide' + prevId)) {
+                            window.location.hash = '#slide' + prevId;
+                        }
+                    }
+                }
+            }
         });
     </script>
 
