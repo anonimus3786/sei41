@@ -326,25 +326,37 @@ body {
 
 /* ===== СТРЕЛКИ ===== */
 .arrow {
-    position: absolute;
-    z-index: 10;
+    position: fixed;
+    bottom: 30px;
+    top: auto;
     display: grid;
     place-items: center;
-    width: 54px;
-    height: 54px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
-    background: #1e3c72;
-    color: #fff;
+    
+    /* Делаем кнопку полупрозрачной */
+    background: rgba(255, 255, 255, 0.6); /* 0.6 — это 60% непрозрачности */
+    backdrop-filter: blur(5px);          /* Размытие фона за кнопкой (эффект стекла) */
+    -webkit-backdrop-filter: blur(5px);  /* Для Safari */
+    
+    color: #1e3c72;
     font-size: 20px;
     text-decoration: none;
-    box-shadow: 0 10px 30px rgba(30, 60, 114, 0.2);
+    box-shadow: 0 10px 30px rgba(30, 60, 114, 0.15); /* Тень сделали чуть мягче */
     transition: transform .2s, background .2s, color .2s;
+    z-index: 100;
+    left: auto;
+    right: auto;
 }
 
+/* При наведении мышкой кнопка становится плотной и закрашивается */
 .arrow:hover {
     transform: scale(1.1);
-    background: #1e3c72;
+    background: #1e3c72; /* Сплошной синий */
     color: #fff;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
 }
 
 .arrow--next {
