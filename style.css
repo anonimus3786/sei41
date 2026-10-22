@@ -1,0 +1,552 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    height: 100%;
+    overflow: hidden;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
+    color: #1a2233;
+    background-image: url(phone.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    margin: 0;
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+/* ===== СЛАЙДЫ ===== */
+.slide {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .4s ease, visibility .4s;
+}
+
+.slide.active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.slide__content {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 40px 60px;
+}
+
+/* ===== ТИТУЛЬНЫЙ СЛАЙД ===== */
+.slide--title {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.slide--title .slide__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.slide--title h1 {
+    font-size: clamp(32px, 5vw, 72px);
+    font-weight: 800;
+    line-height: 1.1;
+}
+
+.slide--title h1 span {
+    display: block;
+    font-weight: 300;
+    font-size: clamp(20px, 2.5vw, 32px);
+    margin-top: 16px;
+    opacity: .9;
+}
+
+.slide--title .slide__num {
+    color: #fff;
+    opacity: .7;
+    margin-bottom: 20px;
+}
+
+.slide__sub {
+    margin-top: 24px;
+    font-size: clamp(15px, 1.4vw, 20px);
+    opacity: .85;
+    max-width: 700px;
+}
+
+.arrow--title {
+    position: static;
+    margin-top: 48px;
+}
+
+/* ===== БЛОК КАРТИНКИ ===== */
+.slide__image {
+    position: relative;
+    background: #fff;
+    border-radius: 24px;
+    padding: 10px;
+    box-shadow: 0 24px 60px rgba(30, 60, 114, 0.2);
+    overflow: hidden;
+}
+
+.slide__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+}
+
+/* Заглушка, если картинки нет */
+.slide__image .placeholder {
+    position: absolute;
+    inset: 10px;
+    display: none;
+    place-items: center;
+    font-size: 18px;
+    color: #8a97b0;
+    border-radius: 16px;
+    background: repeating-linear-gradient(45deg,
+            #dfe7f5,
+            #dfe7f5 14px,
+            #eef3fb 14px,
+            #eef3fb 28px);
+}
+
+.slide__image.is-empty .placeholder {
+    display: grid;
+}
+
+/* ===== БЛОК ТЕКСТА ===== */
+.slide__text {
+    background: #fff;
+    border-radius: 24px;
+    padding: 44px 48px;
+    box-shadow: 0 24px 60px rgba(30, 60, 114, 0.15);
+    z-index: 2;
+}
+
+.slide__num {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: .12em;
+    color: #2a5298;
+    margin-bottom: 14px;
+}
+
+.slide__text h2 {
+    font-size: clamp(22px, 2.4vw, 34px);
+    font-weight: 800;
+    line-height: 1.2;
+    color: #1e3c72;
+    margin-bottom: 18px;
+}
+
+.slide__text p {
+    font-size: clamp(15px, 1.15vw, 18px);
+    color: #45506a;
+    margin-bottom: 12px;
+}
+
+.slide__text strong {
+    color: #1e3c72;
+}
+
+/* ===== РАСКЛАДКИ ===== */
+.slide__content--layout-1 .slide__image {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 55vw;
+    height: 55vh;
+}
+
+.slide__content--layout-1 .slide__text {
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+    width: 42vw;
+}
+
+.slide__content--layout-2 .slide__image {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    width: 55vw;
+    height: 55vh;
+}
+
+.slide__content--layout-2 .slide__text {
+    position: absolute;
+    top: 50%;
+    right: 50px;
+    transform: translateY(-50%);
+    width: 40vw;
+}
+
+.slide__content--layout-3 .slide__image {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    width: 55vw;
+    height: 55vh;
+}
+
+.slide__content--layout-3 .slide__text {
+    position: absolute;
+    left: 50px;
+    bottom: 50px;
+    width: 42vw;
+}
+
+.slide__content--layout-4 .slide__image {
+    position: absolute;
+    bottom: 40px;
+    left: 40px;
+    width: 55vw;
+    height: 55vh;
+}
+
+.slide__content--layout-4 .slide__text {
+    position: absolute;
+    top: 60px;
+    right: 50px;
+    width: 40vw;
+}
+
+.slide__content--layout-5 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.slide__content--layout-5 .slide__image {
+    width: 55vw;
+    height: 65vh;
+    flex-shrink: 0;
+}
+
+.slide__content--layout-5 .slide__text {
+    width: 36vw;
+}
+
+.slide__content--layout-6 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+    flex-direction: row-reverse;
+}
+
+.slide__content--layout-6 .slide__image {
+    width: 55vw;
+    height: 65vh;
+    flex-shrink: 0;
+}
+
+.slide__content--layout-6 .slide__text {
+    width: 36vw;
+}
+
+.slide__content--layout-7 {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 40px;
+}
+
+.slide__content--layout-7 .slide__image {
+    width: 55vw;
+    height: 65vh;
+    flex-shrink: 0;
+}
+
+.slide__content--layout-7 .slide__text {
+    width: 36vw;
+}
+
+
+/* ===== СПЕЦИАЛЬНАЯ РАСКЛАДКА ДЛЯ 3 СЛАЙДА (ПОЛОВИНА ЭКРАНА СЛЕВА) ===== */
+.slide__content--layout-half .slide__image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 50vw;
+    height: 100vh;
+    padding: 0;
+    border-radius: 0;
+    box-shadow: none;
+    z-index: 1;
+    background-color: #1a2233;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.slide__content--layout-half .slide__image img {
+    border-radius: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    /* Влезает целиком, не обрезая голову */
+}
+
+.slide__content--layout-half .slide__text {
+    position: absolute;
+    right: 60px;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 42vw;
+    z-index: 2;
+    box-shadow: 0 24px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== СТРЕЛКИ ===== */
+.arrow {
+    position: absolute;
+    z-index: 10;
+    display: grid;
+    place-items: center;
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    background: #1e3c72;
+    color: #fff;
+    font-size: 20px;
+    text-decoration: none;
+    box-shadow: 0 10px 30px rgba(30, 60, 114, 0.2);
+    transition: transform .2s, background .2s, color .2s;
+}
+
+.arrow:hover {
+    transform: scale(1.1);
+    background: #1e3c72;
+    color: #fff;
+}
+
+.arrow--next {
+    right: 24px;
+    bottom: 24px;
+}
+
+.arrow--prev {
+    left: 24px;
+    bottom: 24px;
+}
+
+.arrow--title {
+    position: static;
+    margin-top: 48px;
+    display: grid;
+}
+
+.arrow--title:hover {
+    transform: scale(1.1);
+}
+
+.btn-back {
+    display: inline-block;
+    margin-top: 16px;
+    padding: 12px 24px;
+    background: #2a5298;
+    color: #fff;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 15px;
+    transition: transform .2s, background .2s;
+}
+
+.btn-back:hover {
+    transform: translateY(-2px);
+    background: #1e3c72;
+}
+
+
+/* =======================================================
+   ДЛЯ ТЕЛЕФОНОВ И ПЛАНШЕТОВ
+   ======================================================= */
+@media (max-width: 900px) {
+
+    .slide__content {
+        padding: 20px;
+    }
+
+    /* Все слайды с картинками перестраиваются в колонку */
+    .slide__content--layout-1,
+    .slide__content--layout-2,
+    .slide__content--layout-3,
+    .slide__content--layout-4,
+    .slide__content--layout-5,
+    .slide__content--layout-6,
+    .slide__content--layout-7,
+    .slide__content--layout-half {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        justify-content: center;
+        height: 100%;
+        padding: 10px;
+    }
+
+    /* Картинки на телефоне */
+    .slide__content--layout-1 .slide__image,
+    .slide__content--layout-2 .slide__image,
+    .slide__content--layout-3 .slide__image,
+    .slide__content--layout-4 .slide__image,
+    .slide__content--layout-5 .slide__image,
+    .slide__content--layout-6 .slide__image,
+    .slide__content--layout-7 .slide__image,
+    .slide__content--layout-half .slide__image {
+        position: static;
+        width: 100%;
+        height: 40vh;
+        flex-shrink: 0;
+        border-radius: 16px;
+        background: #fff;
+        padding: 8px;
+    }
+
+    /* Фикс для 3-го слайда (светлый фон и нормальный размер) */
+    .slide__content--layout-half .slide__image {
+        background-color: #f4f7fb;
+        height: 45vh;
+        border-radius: 16px;
+    }
+
+    .slide__content--layout-half .slide__image img {
+        border-radius: 8px;
+        object-fit: contain;
+        /* На телефоне тоже не обрезаем голову */
+    }
+
+    /* Текст под картинкой */
+    .slide__content--layout-1 .slide__text,
+    .slide__content--layout-2 .slide__text,
+    .slide__content--layout-3 .slide__text,
+    .slide__content--layout-4 .slide__text,
+    .slide__content--layout-5 .slide__text,
+    .slide__content--layout-6 .slide__text,
+    .slide__content--layout-7 .slide__text,
+    .slide__content--layout-half .slide__text {
+        position: static;
+        transform: none;
+        width: 100%;
+        padding: 20px 24px;
+        margin-bottom: 10px;
+    }
+
+    /* Шрифты для телефона */
+    .slide--title h1 {
+        font-size: 28px;
+    }
+
+    .slide--title h1 span {
+        font-size: 16px;
+    }
+
+    .slide__sub {
+        font-size: 14px;
+    }
+
+    .slide__text h2 {
+        font-size: 20px;
+    }
+
+    .slide__text p {
+        font-size: 14px;
+    }
+
+    /* Стрелки */
+    .arrow {
+        width: 44px;
+        height: 44px;
+        font-size: 18px;
+        bottom: 15px;
+    }
+
+    .arrow--next {
+        right: 15px;
+    }
+
+    .arrow--prev {
+        left: 15px;
+    }
+
+    .arrow--title {
+        margin-top: 30px;
+    }
+}
+
+/* ===== НОВЫЙ ТИТУЛЬНЫЙ СЛАЙД С ЛОГОТИПОМ ===== */
+.slide--title-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+}
+
+/* Контейнер для логотипа */
+.logo-box {
+    width: 160px;
+    /* Размер логотипа (можете поменять на 120px или 200px) */
+    height: 160px;
+    margin-bottom: 30px;
+    background: #fff;
+    /* Белый фон под логотипом (если картинка прозрачная, будет смотреться отлично) */
+    border-radius: 50%;
+    /* Делает фон круглым */
+    padding: 15px;
+    /* Отступы внутри круга */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    /* Тень для объема */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo-box img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    /* Картинка вписывается целиком, не обрезается */
+    display: block;
+}
+
+/* Адаптив для телефонов (логотип чуть меньше) */
+@media (max-width: 900px) {
+    .logo-box {
+        width: 110px;
+        height: 110px;
+        margin-bottom: 20px;
+    }
+
+    .slide--title-wrapper h1 {
+        font-size: 26px;
+    }
+}
